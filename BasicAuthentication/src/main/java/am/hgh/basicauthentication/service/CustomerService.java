@@ -29,5 +29,8 @@ public class CustomerService {
     public void deleteCustomerById(Long customerId) {
         customerRepository.deleteById(customerId);
     }
+    public CustomerEntity findCustomerByName(String customerName) {
+        return customerRepository.findByCustomerName(customerName);
+    }
 
 }

@@ -20,11 +20,13 @@ public class CustomerEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String customerName;
-    private String customerRole;
-    private String customerAuthorities;
 
     @OneToMany(mappedBy = "customerEntity", targetEntity = CarEntity.class, cascade = CascadeType.ALL,
             orphanRemoval = true)
     @JsonManagedReference
     private List<CarEntity> customerCar;
+
+    @OneToOne
+    @JoinColumn(name = "cusomer_details_id")
+    private CustomerDetailsEntity customerDetailsEntity;
 }

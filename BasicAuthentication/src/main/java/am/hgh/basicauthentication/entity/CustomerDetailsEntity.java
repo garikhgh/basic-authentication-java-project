@@ -19,10 +19,10 @@ public class CustomerDetailsEntity {
     private Long id;
     private String password;
     private String userName;
-    private boolean expired;
-    private boolean locked;
-    private boolean credentials;
-    private boolean active;
-    private String authorityList;
+    private boolean isExpired;
+    private boolean isLocked;
+    private boolean isCredentials;
+    private boolean isActive;
+    private String roles;
 
 }

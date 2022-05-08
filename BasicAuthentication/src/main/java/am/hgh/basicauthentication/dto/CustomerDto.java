@@ -14,7 +14,6 @@ import java.util.List;
 public class CustomerDto {
     private Long id;
     private String customerName;
-    private String customerRole;
-    private String customerAuthorities;
     private List<CarDto> customerCarDto;
+    private CustomerDetailsDto customerDetailsDto;
 }
