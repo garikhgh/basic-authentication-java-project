@@ -19,8 +19,7 @@ public class CustomerDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        CustomerEntity customerEntity = customerService.findCustomerByName(username);
-        CustomerDetailsEntity details = customerEntity.getCustomerDetailsEntity();
-        return new CustomerDetails(details);
+        CustomerDetailsEntity customerDetails = customerService.findCustomerByName(username);
+        return new CustomerDetails(customerDetails);
     }
 }

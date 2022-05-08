@@ -1,5 +1,6 @@
 package am.hgh.basicauthentication.controller;
 
+import am.hgh.basicauthentication.dto.CustomerDto;
 import am.hgh.basicauthentication.entity.CustomerEntity;
 import am.hgh.basicauthentication.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +31,14 @@ public class CustomerController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<CustomerEntity> createCustomer(@RequestBody CustomerEntity customerEntity) {
-        CustomerEntity createdCustomer = customerService.createCustomer(customerEntity);
+    public ResponseEntity<CustomerEntity> createCustomer(@RequestBody CustomerDto customerDto) {
+        CustomerEntity createdCustomer = customerService.createCustomer(customerDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCustomer);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<CustomerEntity> updateCustomer(@RequestBody CustomerEntity customerEntity) {
-        CustomerEntity updatedCustomer = customerService.updateCustomer(customerEntity);
+    public ResponseEntity<CustomerEntity> updateCustomer(@RequestBody CustomerDto customerDto) {
+        CustomerEntity updatedCustomer = customerService.updateCustomer(customerDto);
         return ResponseEntity.ok(updatedCustomer);
     }
     @DeleteMapping("/{customerId}")
