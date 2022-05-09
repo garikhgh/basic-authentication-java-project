@@ -10,7 +10,7 @@ public interface IUserService {
 
     @Secured({"ROLE_ADMIN","ROLE_USER"})
     public List<CustomerEntity> getAllCustomers();
-    @Secured({"ROLE_ADMIN","ROLE_USER"})
+    @Secured({"ROLE_ADMIN"})
     public CustomerEntity getCustomerById(Long customerId);
     @Secured({"ROLE_ADMIN","ROLE_USER"})
     public CustomerEntity createCustomer(CustomerDto customerDto);
@@ -18,5 +18,4 @@ public interface IUserService {
     public CustomerEntity updateCustomer(CustomerDto customerDto);
     @Secured({"ROLE_ADMIN"})
     public void deleteCustomerById(Long customerId);
-
 }
