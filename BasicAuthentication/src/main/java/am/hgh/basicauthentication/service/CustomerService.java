@@ -26,7 +26,7 @@ public class CustomerService implements IUserService{
     }
     @Override
     public CustomerEntity getCustomerById(Long customerId) {
-        return customerRepository.findById(customerId).get();
+        return customerRepository.findById(customerId).orElse(null);
     }
     @Override
     public CustomerEntity createCustomer(CustomerDto customerDto) {
