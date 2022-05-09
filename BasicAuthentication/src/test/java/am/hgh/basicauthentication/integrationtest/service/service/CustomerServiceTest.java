@@ -26,7 +26,7 @@ class CustomerServiceTest {
     @Test
     void getAllCustomers() {
         List<CustomerEntity> allCustomers = customerService.getAllCustomers();
-        Assertions.assertNotNull(allCustomers.size());
+        Assertions.assertEquals(2, allCustomers.size());
     }
     @Test
     void getCustomerById() {
