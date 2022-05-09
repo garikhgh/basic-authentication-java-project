@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CustomerService {
+public class CustomerService implements IUserService{
 
 //     here should be autowired dto
     @Autowired
@@ -20,20 +20,25 @@ public class CustomerService {
     @Autowired
     private CustomerMapper customerMapper;
 
+    @Override
     public List<CustomerEntity> getAllCustomers() {
         return customerRepository.findAll();
     }
+    @Override
     public CustomerEntity getCustomerById(Long customerId) {
         return customerRepository.findById(customerId).get();
     }
+    @Override
     public CustomerEntity createCustomer(CustomerDto customerDto) {
         CustomerEntity createdCustomer = customerMapper.dto2Customer(customerDto);
         return customerRepository.save(createdCustomer);
     }
+    @Override
     public CustomerEntity updateCustomer(CustomerDto customerDto) {
         CustomerEntity updatedCustomer = customerMapper.dto2Customer(customerDto);
         return customerRepository.save(updatedCustomer);
     }
+    @Override
     public void deleteCustomerById(Long customerId) {
         customerRepository.deleteById(customerId);
     }

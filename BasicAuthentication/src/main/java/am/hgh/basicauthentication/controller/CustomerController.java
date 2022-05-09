@@ -18,35 +18,30 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
-    @Secured(value = {"ADMIN"})
+
     @GetMapping("/all")
     public ResponseEntity<List<CustomerEntity>> getAllCustomers() {
         List<CustomerEntity> customerList = customerService.getAllCustomers();
         return ResponseEntity.ok(customerList);
     }
-    @Secured(value = {"USER"})
     @GetMapping("/{customerId}")
     public ResponseEntity<CustomerEntity> getCustomerById(@PathVariable Long customerId) {
         CustomerEntity customer = customerService.getCustomerById(customerId);
         return ResponseEntity.ok(customer);
     }
-    @Secured(value = {"USER"})
     @PostMapping("/create")
     public ResponseEntity<CustomerEntity> createCustomer(@RequestBody CustomerDto customerDto) {
         CustomerEntity createdCustomer = customerService.createCustomer(customerDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCustomer);
     }
-    @Secured(value = {"ADMIN"})
     @PutMapping("/update")
     public ResponseEntity<CustomerEntity> updateCustomer(@RequestBody CustomerDto customerDto) {
         CustomerEntity updatedCustomer = customerService.updateCustomer(customerDto);
         return ResponseEntity.ok(updatedCustomer);
     }
-    @Secured(value = {"ADMIN"})
     @DeleteMapping("/{customerId}")
     public ResponseEntity<CustomerEntity> deleteCustomerById(@PathVariable Long customerId) {
         customerService.deleteCustomerById(customerId);
         return ResponseEntity.noContent().build();
     }
-
 }
