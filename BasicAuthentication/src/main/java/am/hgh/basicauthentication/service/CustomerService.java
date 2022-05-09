@@ -24,7 +24,7 @@ public class CustomerService {
         return customerRepository.findAll();
     }
     public CustomerEntity getCustomerById(Long customerId) {
-        return customerRepository.getById(customerId);
+        return customerRepository.findById(customerId).get();
     }
     public CustomerEntity createCustomer(CustomerDto customerDto) {
         CustomerEntity createdCustomer = customerMapper.dto2Customer(customerDto);
