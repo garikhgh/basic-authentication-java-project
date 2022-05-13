@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -26,15 +28,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class CustomerControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
-
     Gson gson = new GsonBuilder()
             .setPrettyPrinting()
             .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
             .create();
 
+    @Autowired
+    private MockMvc mockMvc;
+
     @Test
+    @WithMockUser(username="admin",roles={"USER","ADMIN"})
     void getAllCustomers() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders
                 .get("/customer/all")
@@ -44,6 +47,7 @@ public class CustomerControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].id").isNotEmpty());
     }
     @Test
+    @WithMockUser(username="admin",roles={"USER","ADMIN"})
     void getCustomerById() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders
                 .get("/customer/{customerId}", 1)
@@ -54,6 +58,7 @@ public class CustomerControllerTest {
     }
 
     @Test
+    @WithMockUser(username="admin",roles={"USER","ADMIN"})
     void createCustomer() throws Exception {
         CustomerDto customer2create = DummyCustomer.customerDto(3L, 3L, 3L);
         mockMvc.perform(MockMvcRequestBuilders
@@ -67,6 +72,7 @@ public class CustomerControllerTest {
     }
 
     @Test
+    @WithMockUser(username="admin",roles={"USER","ADMIN"})
     void updateCustomer() throws Exception{
         CustomerDto customer2update = DummyCustomer.customerDto(3L, 3L, 3L);
         mockMvc.perform(MockMvcRequestBuilders
@@ -79,6 +85,7 @@ public class CustomerControllerTest {
     }
 
     @Test
+    @WithMockUser(username="admin",roles={"ADMIN"})
     void deleteCustomerById() throws Exception{
         mockMvc.perform(MockMvcRequestBuilders
                 .delete("/customer/{customerId}", 1))

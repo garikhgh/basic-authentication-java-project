@@ -36,7 +36,7 @@ dependencies {
 
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.9.0'
     testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.22.0'
-    runtimeOnly 'org.apache.derby:derby'
+    testImplementation group: 'com.h2database', name: 'h2', version: '2.1.210'
 }
 
 tasks.named('test') {
